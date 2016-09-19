@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+{% block head_title %}Welcome |{{ block.super }}{% endblock %}
+
+<style>
+    {% block style %}
+        .navbar-static-top {
+            margin-bottom: 0px !important;
+        }
+        .jumbotron {
+            background-color: #0E3D14;
+            color: #f4ffcd;
+        }
+
+    {% endblock %}
+</style>
+
+{% block jumbotron %}
+
+
+    {% if not request.user.is_authenticated %}
+        <div class="jumbotron">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h1>Всем привет!!!:)</h1>
+                        <p>Это мой второй проект на Python3, Django и Bootstrap</p>
+                        <p><img src="{% static 'img/Iam.jpg' %}" width="150px"/></p>
+                        <p>
+                            <a class="btn btn-lg btn-primary" href="" role="button">Join Us</a>
+                        </p>
+                    </div>
+                    <div class="col-sm-6">
+                        <iframe width="560" height="315"
+                                src="https://www.youtube.com/embed/KsLHt3D_jsE?list=PLEsfXFp6DpzRcd-q4vR5qAgOZUuz8041S"
+                                frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <h1>Вы вошли</h1>
+        {% if queryset %}
+            <h2>Добро пожаловать</h2>
+            {% for instance in queryset %}
+                {{ instance }} {{ instance.full_name }}
+            {% endfor %}
+        {% endif %}
+
+    {% else %}
+
+        <div class="row">
+            <div class="col-sm-3 pull-right">
+                <p class="lead text-aling-centre">{{ title }}</p>
+
+                <form method="POST" action="">{% csrf_token %}
+
+                    {{ form|crispy }}
+
+                    <input class="btn btn-primary" type="submit" value="Sing Up">
+                </form>
+            </div>
+            <div class="col-sm-3">
+                <p class="lead text-aling-centre">Django &amp; bootstrap</p>
+                <img src="{% static 'img/Iam.jpg' %}" width="150px"/>
+            </div>
+            <div class="col-sm-3">
+                <p>Какой-то текст</p>
+            </div>
+            <div class="col-sm-3"><p class="lead text-aling-centre">Always Open Source</p></div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3 pull-right">
+                <p class="lead text-aling-centre"><a
+                        href="https://www.youtube.com/watch?v=QgdINlxm-wE&list=PLpTASIMYgCp8supkEmnnrYa5xi9g91ZPI&index=1">Смотреть
+                    здесь</a></p>
+                <iframe width="224" height="126"
+                        src="https://www.youtube.com/embed/QgdINlxm-wE?list=PLpTASIMYgCp8supkEmnnrYa5xi9g91ZPI"
+                        frameborder="0" allowfullscreen></iframe>
+
+            </div>
+            <div class="col-sm-3">
+                <p class="lead text-aling-centre"><a href="https://www.youtube.com/channel/UCIVVEmrGyqEleoFbayEHLrg">Смотреть
+                    здесь</a></p>
+                <iframe width="224" height="126" src="https://www.youtube.com/embed/NW0fxRLW1OQ" frameborder="0"
+                        allowfullscreen></iframe>
+            </div>
+            <div class="col-sm-3">
+                <p class="lead text-aling-centre"><a
+                        href="https://www.youtube.com/watch?v=-5Akg1cD5Hg&list=PLk3dllNv0g252fFKpiYeJaSRwEpBzhUcu&index=1">Смотреть
+                    здесь</a></p>
+                <iframe width="224" height="126"
+                        src="https://www.youtube.com/embed/-5Akg1cD5Hg?list=PLk3dllNv0g252fFKpiYeJaSRwEpBzhUcu"
+                        frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="col-sm-3"><p class="lead text-aling-centre"><a
+                    href="https://www.youtube.com/watch?v=dsUnYAHx9Ro&list=PLw9iStk1sia9yEiv5b7-Flxg6kTE2FAEL&index=1">Смотреть
+                здесь</a></p>
+                <iframe width="224" height="126"
+                        src="https://www.youtube.com/embed/dsUnYAHx9Ro?list=PLw9iStk1sia9yEiv5b7-Flxg6kTE2FAEL"
+                        frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 pull-right">
+            </div>
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-3">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 pull-right">
+                <p class="lead text-aling-centre"><a
+                        href="https://tutorial.djangogirls.org/ru/django_orm/">tutorial.djangogirls</a></p>
+
+            </div>
+            <div class="col-sm-3">
+                <p class="lead text-aling-centre"><a
+                        href="http://django-crispy-forms.readthedocs.io/en/latest/install.html">django-crispy-forms</a>
+                </p>
+
+            </div>
+            <div class="col-sm-3">
+                <p class="lead text-aling-centre"><a
+                        href="http://getbootstrap.com">getbootstrap</a></p>
+            </div>
+            <div class="col-sm-3"><p class="lead text-aling-centre"><a
+                    href="https://django-registration-redux.readthedocs.io/en/latest/quickstart.html">django-registration-redux</a>
+            </p>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+
